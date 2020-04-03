@@ -6,7 +6,15 @@ public class MemberVo {
 	private String tel;
 	private int age;
 	private String pwd;
+	private String role;
 	
+	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getId() {
 		return id;
 	}
@@ -82,13 +90,14 @@ public class MemberVo {
 		return true;
 	}
 
-	public MemberVo(String id, String name, String tel, int age, String pwd) {
+	public MemberVo(String id, String name, String tel, int age, String pwd, String role) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.tel = tel;
 		this.age = age;
 		this.pwd = pwd;
+		this.role = role;
 	}
 	
 	

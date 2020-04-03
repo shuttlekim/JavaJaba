@@ -26,7 +26,7 @@
     	border-bottom: 1px solid #ccc;
 	}
 	
-	#btn, #btnInsert, #btnBack, #btnReset {
+	.btn, #btnInsert, #btnBack, #btnReset {
 	    width:70px;
 	    background-color: #369;
 	    border: none;
@@ -40,6 +40,9 @@
 	    cursor: pointer;
 	    border-radius:10px;
 	}
+	#deptInsertDiv{
+		display: none;
+	}
 	
 	.active{
 		background: pink;
@@ -49,28 +52,14 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function (){
+		var arr;
 		
-		$("#btnInsert").click(function(){
-			var dept = $("#f").serialize();
-			$.ajax("/insertDept", {data:dept, success:function(r){
-				listDept();
-			}});
-		});
-		
-		$("#btnBack").click(function(){
-			location.href = "/EmpTest.html"
-		})
-		
-		$("#btnReset").click(function(){
-			$("#f input").val("");
-		})
-			var arr;
-			function listDept(){
+		function listDept(){
 				
 				$("#tb").empty();
 				$("#tb").html("<th>부서번호</th><th>부서명</th><th>부서위치</th>");
 				
-				$.getJSON("/listDept",function(data){
+				$.getJSON("/all/listDept",function(data){
 					arr = data;
 					$.each(data, function(idx, d){
 						
@@ -94,26 +83,50 @@
 					$("#tb").append(tr);
 					});
 				});
-			};
+		};
+		listDept();
+		
+		
+		$("#btnInsertForm").click(function(){
+			$("#deptInsertDiv").css("display", "block");
+			$("#btnInsertForm").css("display", "none");
 			
-			$("#btn").click(function(){
-				listDept();
+			$("#btnInsert").click(function(){
+				var dept = $("#f").serialize();
+				$.ajax("/manager/insertDept", {data:dept, success:function(r){
+					listDept();
+				}});
 			});
+			
+			$("#btnBack").click(function(){
+				location.href = "/EmpTest.html"
+			})
+			
+			$("#btnReset").click(function(){
+				$("#f input").val("");
+			})
+		})
+		
 	});
 </script>
 </head>
 <body>
 	<h2>부서등록</h2>
 	<hr>
-	<form id="f">
-	부서번호 : <input type="text" id="dno" name="dno"><br>
-	부서이름 : <input type="text" id="dname" name="dname"><br>
-	부서지역 : <input type="text" id="dloc" name="dloc"><br>
-	</form>
-	<br>
-	<button id="btnInsert" class="btn">등록</button>
-	<button id="btnReset" class="btn">취소</button>
-	<button id="btnBack" class="btn">뒤로가기</button>
+	<div id="deptInsertDiv">
+		<form id="f">
+		부서번호 : <input type="text" id="dno" name="dno"><br>
+		부서이름 : <input type="text" id="dname" name="dname"><br>
+		부서지역 : <input type="text" id="dloc" name="dloc"><br>
+		</form>
+		<br>
+		<button id="btnInsert" class="btn">등록</button>
+		<button id="btnReset" class="btn">취소</button>
+		<button id="btnBack" class="btn">뒤로가기</button>
+	</div>
+	<div id="deptBtnDiv">
+		<button id="btnInsertForm" class="btn">등록</button>
+	</div>
 	<hr>
 	<table id="tb" border="1" width="70%">
 		<tr>
@@ -122,7 +135,5 @@
 			<th>부서위치</th>
 		</tr>
 	</table>
-	<br>
-	<button id="btn" class="btn">부서목록</button>
 </body>
 </html>

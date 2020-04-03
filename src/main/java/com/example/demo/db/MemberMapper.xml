@@ -3,6 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
+
+  <insert id="insert">
+  	insert into member values(#{id},#{name},#{tel},#{age},#{pwd},#{role})
+  </insert>
+
+  <select id="selectMember" resultType="memberVo">
+  	select *from member where id=#{username}
+  </select>
+  
   <select id="isMember" resultType="memberVo">
     select * from member where id=#{id} and pwd=#{pwd}
   </select>

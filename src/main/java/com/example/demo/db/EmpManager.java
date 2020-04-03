@@ -66,4 +66,20 @@ public class EmpManager {
 		return r;
 	}
 	
+	public static MemberVo selectMember(String username) {
+		MemberVo r = null;
+		SqlSession session = factory.openSession();
+		r = session.selectOne("member.selectMember", username);
+		session.close();
+		return r;
+	}
+	
+	public static int insertMember(MemberVo m) {
+		SqlSession session = factory.openSession(true);
+		int re = session.insert("member.insert", m);
+		session.close();
+		return re;
+	}
+	
+	
 }

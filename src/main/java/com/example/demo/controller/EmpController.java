@@ -33,7 +33,7 @@ public class EmpController {
 		return str;
 	}
 	
-	@RequestMapping("/insertEmp")
+	@RequestMapping("/manager/insertEmp")
 	public String insertEmp(EmpVo e, HttpServletRequest request) {
 		String str = "false";
 		int re = dao.insertEmp(e);
@@ -45,14 +45,14 @@ public class EmpController {
 		return str;
 	}
 	
-	@RequestMapping("/deleteEmp")
+	@RequestMapping("/manager/deleteEmp")
 	public String deleteEmp(EmpVo e, HttpServletRequest request) {
 		String str = "ok";
 		EmpManager.deleteEmp(e);
 		return str;
 	}
 	
-	@RequestMapping("/updateEmp")
+	@RequestMapping("/manager/updateEmp")
 	public String updateEmp(EmpVo e, HttpServletRequest request) {
 		String str = "ok";
 		EmpManager.updateEmp(e);

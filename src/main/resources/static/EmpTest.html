@@ -64,7 +64,7 @@ $(function(){
 		$("#btnInsertOk").click(function(){
 			var insertData = $("#insertForm").serialize();
 			
-			$.ajax("/insertEmp", {data:insertData, success: function(data){
+			$.ajax("/manager/insertEmp", {data:insertData, success: function(data){
 				alert(data);
 				window.location.href = "EmpTest.html";
 			}})
@@ -77,7 +77,7 @@ $(function(){
 	
 	$("#btnDelete").click(function() {
 		var EmpData = $("#insertForm").serialize();
-		$.ajax("/deleteEmp", {data : EmpData, success : function(r) {
+		$.ajax("/manager/deleteEmp", {data : EmpData, success : function(r) {
 			alert("삭제 성공");
 			window.location.href = "EmpTest.html";
 			} 
@@ -89,7 +89,7 @@ $(function(){
 	     $("#insertDiv").css("display","block");
 			$(".btnDiv").css("display","none");
 			$("#btnInsertOk").html("수정");
-	     $.ajax("/updateEmp", {data : EmpData, success : function(r) {
+	     $.ajax("/manager/updateEmp", {data : EmpData, success : function(r) {
 	    	 alert("수정 성공");
 			window.location.href = "EmpTest.html";
 	        } 

@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 @RestController
 public class DeptController {
 	
-	@RequestMapping(value = "/listDept", produces ="application/json;charset=UTF-8" )
+	@RequestMapping(value = "/all/listDept", produces ="application/json;charset=UTF-8" )
 	public String listDept(HttpServletRequest request) {
 		String str ="";
 		List<DeptVo> list = DeptManager.listDept();
@@ -23,7 +23,7 @@ public class DeptController {
 		return str;
 	}
 	
-	@RequestMapping("/insertDept")
+	@RequestMapping("/manager/insertDept")
 	public String insertDept(DeptVo d, HttpServletRequest request) {
 		DeptManager.insertDept(d);
 		String str = "ok";
